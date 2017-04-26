@@ -25,26 +25,6 @@ function callAPI($method, $url, $data = false)
     curl_close($curl);
     return $result;
 }
-
-if(isset($_POST['enviar']) and isset($_POST['cantidad']))
-{
-	if($_POST['moneda_base'] != $_POST['moneda_convertir'])
-	{
-		//Se realizar la llamada a la API
-		$result = json_decode(callAPI('GET','http://api.fixer.io/latest?base='.$_POST['moneda_base']));
-		//Resultado del tipo de cambio de la moneda
-		$cambio = (float)$_POST['cantidad']*(float)$result->{'rates'}->{$_POST['moneda_convertir']};
-		//Mensaje final de la conversion
-		echo $_POST['cantidad']." ".$_POST['moneda_base']." son ".$cambio." ".$_POST['monedas'].$_POST['moneda_convertir'];	
-	}
-	else
-	{
-		echo "Elija distintas monedas para el cambio";
-	}
-	
-}
-else
-{
-	echo "Debe ingresar una cantidad para la conversion";
-}
 ?>
+
+
